@@ -1,4 +1,4 @@
-# Tested with Python 3.11
+# Tested with Python 3.11 and 3.13
 numpy>=1.26
 pandas>=2.2          # groupby.apply(include_groups=...) and Styler.map
 matplotlib>=3.8      # layout="constrained" with "outside" legend placement

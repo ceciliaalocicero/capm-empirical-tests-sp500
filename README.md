@@ -64,8 +64,8 @@ All 15 figures produced by the notebook are in [`figures/`](figures/).
 
 | Dataset | Content | Period | Used in | Included in repo? |
 |---------|---------|--------|---------|-------------------|
-| Eight-stock price file | Daily closing prices of AAPL, BA, T, MGM, AMZN, IBM, TSLA, GOOG and the S&P 500 price index | 12 Jan 2012 – mid-2020 | Parts 1–3 | **No** (course-provided file) |
-| CRSP daily stock file, S&P 500 constituents | ~2.15 million stock-days, 873 distinct firms (PERMNO), total returns incl. dividends, market cap, price flags | 2007–2023 | Part 4 | **No** (licensed via WRDS) |
+| Eight-stock price file | Daily closing prices of AAPL, BA, T, MGM, AMZN, IBM, TSLA, GOOG and the S&P 500 price index | 12 Jan 2012 – 11 Aug 2020 | Sections 3–5 | **No** (course-provided file) |
+| CRSP daily stock file, S&P 500 constituents | ~2.15 million stock-days, 873 distinct firms (PERMNO), total returns incl. dividends, market cap, price flags | 2007–2023 | Section 6 | **No** (licensed via WRDS) |
 
 **Why CRSP rather than Wikipedia + Yahoo Finance.** A ticker list scraped from Wikipedia contains only *current* index members, and Yahoo Finance generally lacks price histories for delisted firms. A sample built that way over-represents survivors and overstates average returns. CRSP includes every firm that was in the index during the sample, including later delistings, with a permanent identifier that survives ticker changes.
 
@@ -77,13 +77,13 @@ All 15 figures produced by the notebook are in [`figures/`](figures/).
 
 **Returns and conventions.** Simple daily returns; risk-free rate set to zero throughout (T-bill rates were near zero for most of the sample); annualization by ×252. The eight-stock prices are split-adjusted but not dividend-adjusted, so returns for high-yield stocks (T, IBM) are somewhat understated.
 
-**Part 1 – Market exposure.** Scatter plots of daily stock vs. market returns, cumulative performance, and 63-day rolling correlations, with the February–April 2020 COVID crash highlighted.
+**Section 3 – Market exposure.** Scatter plots of daily stock vs. market returns, cumulative performance, and 63-day rolling correlations, with the February–April 2020 COVID crash highlighted.
 
-**Part 2 – Full-sample CAPM.** For each stock, OLS of daily returns on market returns. Residual diagnostics: Jarque–Bera (normality), Breusch–Pagan and White (heteroskedasticity), Breusch–Godfrey (autocorrelation, 5 lags). Inference re-estimated with Newey–West HAC standard errors. Beta tested against 1, alpha against 0. 252-day rolling betas. An equally weighted portfolio of the four highest-beta stocks compares CAPM-implied and realized returns.
+**Section 4 – Full-sample CAPM.** For each stock, OLS of daily returns on market returns. Residual diagnostics: Jarque–Bera (normality), Breusch–Pagan and White (heteroskedasticity), Breusch–Godfrey (autocorrelation, 5 lags). Inference re-estimated with Newey–West HAC standard errors. Beta tested against 1, alpha against 0. 252-day rolling betas. An equally weighted portfolio of the four highest-beta stocks compares CAPM-implied and realized returns.
 
-**Part 3 – Predictive test.** For each year *y* (2014–2020): estimate βᵢ on the 252 trading days before 1 January of *y*; compare the stock's realized annualized return in *y* with β × (realized market return in *y*). Analyses: prediction errors, year-by-year security market lines, realized SML slope vs. market return, beta stability with confidence bands, high- vs. low-beta groups, and sensitivity to 63/126/252/504-day estimation windows.
+**Section 5 – Predictive test.** For each year *y* (2014–2020): estimate βᵢ on the 252 trading days before 1 January of *y*; compare the stock's realized annualized return in *y* with β × (realized market return in *y*). Analyses: prediction errors, year-by-year security market lines, realized SML slope vs. market return, beta stability with confidence bands, high- vs. low-beta groups, and sensitivity to 63/126/252/504-day estimation windows.
 
-**Part 4 – Cross-sectional extension (CRSP).** Following Fama and French (2004):
+**Section 6 – Cross-sectional extension (CRSP).** Following Fama and French (2004):
 - value-weighted market proxy built from the panel with lagged market-cap weights;
 - annual formation of ten value-weighted portfolios on pre-ranking betas (504 trading days, minimum 380 observations), held one year, 2010–2023;
 - post-ranking betas and a security-market-line plot (analogue of Fama–French 2004, Figure 2);
@@ -111,7 +111,7 @@ capm-empirical-tests-sp500/
 
 ## Technologies
 
-Python 3.11 · pandas · NumPy · statsmodels (OLS, HAC, diagnostic tests) · SciPy · Matplotlib · seaborn · Jupyter · CRSP via WRDS
+Python 3.11 / 3.13 · pandas · NumPy · statsmodels (OLS, HAC, diagnostic tests) · SciPy · Matplotlib · seaborn · Jupyter · CRSP via WRDS
 
 ## Reproducing the analysis
 
@@ -126,18 +126,18 @@ pip install -r requirements.txt
 1. Obtain the data as described in [`data/README.md`](data/README.md) and place the files in `data/raw/`.
 2. Launch Jupyter (`jupyter lab`) and open `notebooks/capm_empirical_tests.ipynb`.
 3. Check the file names and parameters in the **Setup and configuration** cell.
-4. Run all cells (*Run → Run All Cells*). Parts 1–3 need only the eight-stock file; Part 4 needs only the CRSP file.
+4. Run all cells (*Run → Run All Cells*). Sections 2–5 need only the eight-stock file; Section 6 needs only the CRSP file.
 
 If you rebuild the eight-stock data from a different source (e.g. Yahoo Finance), expect small numerical differences from the committed outputs.
 
 ## Limitations
 
 - **Risk-free rate set to zero**, so returns are raw rather than excess returns; this mainly affects intercepts.
-- **Market proxy.** Parts 1–3 use the S&P 500 price index (no dividends); Part 4 uses a value-weighted index of S&P 500 constituents. Neither is the true market portfolio (Roll, 1977).
-- **Small, non-random sample in Parts 1–3:** eight well-known stocks, several of them large ex-post winners, over one long bull market.
-- **2020 is a partial year** (data end mid-2020), dominated by the COVID crash and rebound; annualized 2020 figures should be read with care.
+- **Market proxy.** Sections 3–5 use the S&P 500 price index (no dividends); Section 6 uses a value-weighted index of S&P 500 constituents. Neither is the true market portfolio (Roll, 1977).
+- **Small, non-random sample in Sections 3–5:** eight well-known stocks, several of them large ex-post winners, over one long bull market.
+- **2020 is a partial year** (data end 11 August 2020), dominated by the COVID crash and rebound; annualized 2020 figures should be read with care.
 - **Price-only returns** in the eight-stock data understate returns of high-dividend stocks.
-- **Large caps only in Part 4**, so size effects cannot be studied; **no book equity** (Compustat), so the book-to-market test was not replicated.
+- **Large caps only in Section 6**, so size effects cannot be studied; **no book equity** (Compustat), so the book-to-market test was not replicated.
 - **Daily data in the GRS test**, whose F-distribution assumes normal i.i.d. errors; residuals here are fat-tailed and heteroskedastic.
 - Decile weights are fixed at formation-date market caps rather than drifting with prices; stocks leave a portfolio when they leave the index.
 - Alphas are **historical, in-sample** estimates. Nothing here is a trading strategy or backtest, and transaction costs are not considered.

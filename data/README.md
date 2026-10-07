@@ -6,11 +6,11 @@ No data files are committed to this repository. The notebook is saved **with its
 data/
 ├── README.md
 └── raw/                              # create locally, never commit
-    ├── Data_Stock.csv                # eight-stock price file (Parts 1–3)
-    └── crsp_sp500_2007_2023.csv.gz   # CRSP daily panel (Part 4)
+    ├── Data_Stock.csv                # eight-stock price file (Sections 2–5)
+    └── crsp_sp500_2007_2023.csv.gz   # CRSP daily panel (Section 6)
 ```
 
-## 1. Eight-stock price file (Parts 1–3)
+## 1. Eight-stock price file (Sections 2–5)
 
 **Original source:** course-provided file; not redistributable here.
 
@@ -36,7 +36,7 @@ px = px.rename(columns={"^GSPC": "sp500"}).reset_index()
 px.to_csv("data/raw/Data_Stock.csv", index=False)
 ```
 
-## 2. CRSP daily S&P 500 panel (Part 4)
+## 2. CRSP daily S&P 500 panel (Section 6)
 
 **Source:** CRSP US Stock Database via Wharton Research Data Services (WRDS). Requires an institutional WRDS subscription. **CRSP data may not be redistributed**, including on GitHub.
 
