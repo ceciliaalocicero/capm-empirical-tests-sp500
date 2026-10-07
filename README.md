@@ -3,6 +3,8 @@
 Empirical tests of the Capital Asset Pricing Model (CAPM) in Python. The project estimates market betas and alphas for eight large US stocks (2012–2020), checks whether prior-year betas explain realized returns, and then extends the test to the full S&P 500 universe using a survivorship-bias-free CRSP panel (2007–2023) with beta-sorted portfolios, Fama–MacBeth regressions and the Gibbons–Ross–Shanken (GRS) test.
 
 > **Status:** completed team project (4 authors), originally developed as coursework in an MSc finance course at Bocconi University. See [Authors](#authors-and-contributions) and [Disclaimer](#disclaimer).
+>
+> **Companion project:** [Does Mean-Variance Optimization Survive Out of Sample?](https://github.com/ceciliaalocicero/markowitz-portfolio-optimization-backtest), which uses the same eight stocks to test Markowitz portfolio optimization out of sample.
 
 ---
 
@@ -64,7 +66,7 @@ All 15 figures produced by the notebook are in [`figures/`](figures/).
 
 | Dataset | Content | Period | Used in | Included in repo? |
 |---------|---------|--------|---------|-------------------|
-| Eight-stock price file | Daily closing prices of AAPL, BA, T, MGM, AMZN, IBM, TSLA, GOOG and the S&P 500 price index | 12 Jan 2012 – 11 Aug 2020 | Sections 3–5 | **No** (course-provided file) |
+| Eight-stock price file | Daily closing prices of AAPL, BA, T, MGM, AMZN, IBM, TSLA, GOOG and the S&P 500 price index | 12 Jan 2012 – 11 Aug 2020 | Sections 2–5 | **No** (course-provided file) |
 | CRSP daily stock file, S&P 500 constituents | ~2.15 million stock-days, 873 distinct firms (PERMNO), total returns incl. dividends, market cap, price flags | 2007–2023 | Section 6 | **No** (licensed via WRDS) |
 
 **Why CRSP rather than Wikipedia + Yahoo Finance.** A ticker list scraped from Wikipedia contains only *current* index members, and Yahoo Finance generally lacks price histories for delisted firms. A sample built that way over-represents survivors and overstates average returns. CRSP includes every firm that was in the index during the sample, including later delistings, with a permanent identifier that survives ticker changes.

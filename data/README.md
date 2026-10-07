@@ -32,7 +32,8 @@ import yfinance as yf
 tickers = ["AAPL", "BA", "T", "MGM", "AMZN", "IBM", "TSLA", "GOOG", "^GSPC"]
 px = yf.download(tickers, start="2012-01-12", end="2020-08-12",
                  auto_adjust=False)["Close"]
-px = px.rename(columns={"^GSPC": "sp500"}).reset_index()
+px = px.rename(columns={"^GSPC": "sp500"})[
+    ["AAPL", "BA", "T", "MGM", "AMZN", "IBM", "TSLA", "GOOG", "sp500"]].reset_index()
 px.to_csv("data/raw/Data_Stock.csv", index=False)
 ```
 
