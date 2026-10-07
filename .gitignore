@@ -1,0 +1,35 @@
+# --- Original coursework notebook (kept locally only) ---
+_original/
+
+# --- Data: never commit (licensed or course-provided) ---
+data/raw/
+data/processed/
+*.csv
+*.csv.gz
+*.parquet
+*.xlsx
+*.xls
+*.feather
+*.h5
+
+# --- Credentials ---
+.env
+.pgpass
+*.pgpass
+wrds_credentials*
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

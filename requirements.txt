@@ -1,0 +1,8 @@
+# Tested with Python 3.11
+numpy>=1.26
+pandas>=2.2          # groupby.apply(include_groups=...) and Styler.map
+matplotlib>=3.8      # layout="constrained" with "outside" legend placement
+seaborn>=0.13
+scipy>=1.11
+statsmodels>=0.14
+jupyterlab>=4.0
